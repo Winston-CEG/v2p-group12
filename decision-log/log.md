@@ -21,3 +21,15 @@
 | Decision and Rationale | Selected LTE-V2X PC5 (Rel-14) for communication — commercially available chipsets (Qualcomm 9150), < 5 ms direct sidelink latency, 300–450 m range, no cellular network dependency. DSRC rejected due to declining support and FCC spectrum reallocation. For feedback, leaning towards haptic vibration belt — VI pedestrians rely heavily on ambient sound for traffic judgment, so audio risks masking critical environmental cues. A waist-band with directional vibration motors could encode both direction and urgency without blocking hearing. Will finalise motor count and layout in a follow-up entry. |
 | AI Usage | ChatGPT was used to summarise the FCC 5.9 GHz spectrum history. One error found: it claimed the FCC fully banned DSRC, when in fact 30 MHz was retained for ITS (corrected from FCC Order 20-305). Claude was asked to compare haptic vs audio for VI users and correctly flagged the ambient sound masking concern. |
 | Team Members | All |
+
+## Entry 3 — PC5-Only vs Hybrid PC5 + Cellular
+
+| Field | Details |
+|---|---|
+| **Date** | 07 Mar 2026 |
+| **Trigger / Problem** | Having selected C-V2X PC5 as the communication technology (Entry 2), we need to decide whether the wearable should rely on PC5 direct sidelink only, or also use the Uu (cellular network) path as a secondary channel. |
+| **Options / Alternatives** | A) PC5-only for all functions; B) PC5 for safety alerts + Uu via 5G for non-safety features (e.g., route planning, firmware updates); C) Uu-only via MEC server |
+| **Evaluation Criteria** | End-to-end latency, dependency on network coverage, hardware cost, power consumption |
+| **Decision and Rationale** | PC5-only for all safety-critical alerts, with Uu as an optional fallback for non-safety features. PC5 direct sidelink adds < 5 ms air-interface latency vs 50–200 ms via the cellular path. For a safety application, the system must work even in areas with poor cellular coverage (e.g., underground crossings, parking structures). Adding Uu as a mandatory path would also increase power consumption and require a SIM/eSIM, raising cost and complexity. |
+| **AI Usage** | Claude was asked to compare PC5 vs Uu latency. Response was mostly accurate but confused Mode 3 (network-scheduled) with Mode 4 (autonomous resource selection). Corrected from 3GPP TS 36.300. |
+| **Team Members** | All |
