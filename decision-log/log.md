@@ -33,3 +33,15 @@
 | **Decision and Rationale** | PC5-only for all safety-critical alerts, with Uu as an optional fallback for non-safety features. PC5 direct sidelink adds < 5 ms air-interface latency vs 50–200 ms via the cellular path. For a safety application, the system must work even in areas with poor cellular coverage (e.g., underground crossings, parking structures). Adding Uu as a mandatory path would also increase power consumption and require a SIM/eSIM, raising cost and complexity. |
 | **AI Usage** | Claude was asked to compare PC5 vs Uu latency. Response was mostly accurate but confused Mode 3 (network-scheduled) with Mode 4 (autonomous resource selection). Corrected from 3GPP TS 36.300. |
 | **Team Members** | All |
+
+## Entry 4 — Haptic Motor Count and Arrangement
+
+| Field | Details |
+|---|---|
+| **Date** | 09 Mar 2026 |
+| **Trigger / Problem** | With the haptic wearable direction confirmed (Entry 2), we need to decide how many vibration motors to use and how to arrange them to convey directional information effectively. |
+| **Options / Alternatives** | A) 4 motors (cardinal directions only — front, back, left, right); B) 6 motors (60° spacing); C) 8 motors (45° compass-rose pattern); D) 16 motors (22.5° high resolution) |
+| **Evaluation Criteria** | Directional resolution, user discriminability on the torso, wearability and comfort, I²C bus complexity, hardware cost |
+| **Decision and Rationale** | 8 motors at 45° intervals. Research on vibrotactile perception (Jones & Sarter, 2008) shows that users can reliably distinguish 8 directions on the torso. 4 motors is too coarse — the user cannot tell the difference between front-left and left, which matters when a vehicle is approaching from an angle. 16 motors exceeds the tactile spatial acuity of the waist area and doubles the wiring complexity for negligible perceptual gain. 8 provides the best trade-off between directional precision and practical wearability. |
+| **AI Usage** | Claude initially suggested 6 motors. When shown the Jones & Sarter (2008) study on torso-based vibrotactile displays, it agreed that 8 is the established standard. This highlighted the importance of verifying AI suggestions against domain-specific literature. |
+| **Team Members** | All |
