@@ -38,7 +38,7 @@
 
 | Field | Details |
 |---|---|
-| **Date** | 09 Mar 2026 |
+| **Date** | 11 Mar 2026 |
 | **Trigger / Problem** | With the haptic wearable direction confirmed (Entry 2), we need to decide how many vibration motors to use and how to arrange them to convey directional information effectively. |
 | **Options / Alternatives** | A) 4 motors (cardinal directions only — front, back, left, right); B) 6 motors (60° spacing); C) 8 motors (45° compass-rose pattern); D) 16 motors (22.5° high resolution) |
 | **Evaluation Criteria** | Directional resolution, user discriminability on the torso, wearability and comfort, I²C bus complexity, hardware cost |
