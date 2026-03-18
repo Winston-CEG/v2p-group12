@@ -45,3 +45,15 @@
 | **Decision and Rationale** | 8 motors at 45° intervals. Research on vibrotactile perception (Jones & Sarter, 2008) shows that users can reliably distinguish 8 directions on the torso. 4 motors is too coarse — the user cannot tell the difference between front-left and left, which matters when a vehicle is approaching from an angle. 16 motors exceeds the tactile spatial acuity of the waist area and doubles the wiring complexity for negligible perceptual gain. 8 provides the best trade-off between directional precision and practical wearability. |
 | **AI Usage** | Claude initially suggested 6 motors. When shown the Jones & Sarter (2008) study on torso-based vibrotactile displays, it agreed that 8 is the established standard. This highlighted the importance of verifying AI suggestions against domain-specific literature. |
 | **Team Members** | All |
+
+## Entry 5 — Collision Risk Metric
+ 
+| Field | Details |
+|---|---|
+| **Date** | 18 Mar 2026 |
+| **Trigger / Problem** | Which collision risk metric should the system use to decide when to alert the pedestrian? |
+| **Options / Alternatives** | A) TTC-only (Time-to-Collision); B) PET-only (Post-Encroachment Time); C) Combined TTC + PET with OR-logic thresholds |
+| **Evaluation Criteria** | Handling of crossing (perpendicular) scenarios, computational cost, false alarm rate |
+| **Decision and Rationale** | Combined TTC + PET with OR-logic. TTC alone handles head-on and rear approaches well but underestimates risk in crossing conflicts (e.g., vehicle turning across crosswalk). PET captures the temporal gap at the conflict point for perpendicular trajectories. OR-logic ensures that either metric triggering is sufficient to raise an alert, prioritising safety over false-alarm reduction. |
+| **AI Usage** | AI not used for this decision. |
+| **Team Members** | All |
