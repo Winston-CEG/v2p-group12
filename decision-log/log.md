@@ -57,3 +57,15 @@
 | **Decision and Rationale** | Combined TTC + PET with OR-logic. TTC alone handles head-on and rear approaches well but underestimates risk in crossing conflicts (e.g., vehicle turning across crosswalk). PET captures the temporal gap at the conflict point for perpendicular trajectories. OR-logic ensures that either metric triggering is sufficient to raise an alert, prioritising safety over false-alarm reduction. |
 | **AI Usage** | AI not used for this decision. |
 | **Team Members** | All |
+
+## Entry 6 — GNSS Positioning in Urban Environments
+
+| Field | Details |
+|---|---|
+| **Date** | 21 Mar 2026 |
+| **Trigger / Problem** | The collision risk engine (Entry 5) requires accurate pedestrian positioning. Standalone GNSS may not be reliable enough in Singapore's dense urban areas due to multipath effects from high-rise buildings. |
+| **Options / Alternatives** | A) Standalone GNSS only; B) GNSS + IMU dead reckoning; C) GNSS + RTK corrections from base station; D) GNSS + IMU + MAP data matching from RSU |
+| **Evaluation Criteria** | Positioning accuracy, cost, real-time availability, power consumption, dependency on external infrastructure |
+| **Decision and Rationale** | GNSS + IMU dead reckoning with MAP-matching. Standalone GNSS in Singapore's CBD yields 3–5 m CEP, which is insufficient to determine which side of a road the pedestrian is on. Adding a BNO055 IMU provides dead-reckoning during short GNSS dropouts (up to ~30 s). MAP data received from RSUs via PC5 allows snapping the pedestrian position to the nearest crosswalk or sidewalk. RTK was rejected because it requires a base station and continuous correction stream, which adds Uu dependency — contradicting our PC5-only safety path decision (Entry 3). |
+| **AI Usage** | Claude was asked about GNSS accuracy in Singapore urban areas. It correctly identified the urban canyon problem but overestimated standalone accuracy at "1–2 m." Corrected using published SLA/LTA positioning studies that show 3–5 m typical CEP in the CBD. |
+| **Team Members** | All |
