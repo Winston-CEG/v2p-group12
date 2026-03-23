@@ -69,3 +69,16 @@
 | **Decision and Rationale** | GNSS + IMU dead reckoning with MAP-matching. Standalone GNSS in Singapore's CBD yields 3–5 m CEP, which is insufficient to determine which side of a road the pedestrian is on. Adding a BNO055 IMU provides dead-reckoning during short GNSS dropouts (up to ~30 s). MAP data received from RSUs via PC5 allows snapping the pedestrian position to the nearest crosswalk or sidewalk. RTK was rejected because it requires a base station and continuous correction stream, which adds Uu dependency — contradicting our PC5-only safety path decision (Entry 3). |
 | **AI Usage** | Claude was asked about GNSS accuracy in Singapore urban areas. It correctly identified the urban canyon problem but overestimated standalone accuracy at "1–2 m." Corrected using published SLA/LTA positioning studies that show 3–5 m typical CEP in the CBD. |
 | **Team Members** | All |
+
+
+## Entry 7 — Message Format Standard
+
+| Field | Details |
+|---|---|
+| **Date** | 23 Mar 2026 |
+| **Trigger / Problem** | Should the system use standard ETSI ITS message formats, or design custom lightweight messages to reduce overhead? |
+| **Options / Alternatives** | A) Fully standard ETSI ITS messages (CAM, DENM, VAM); B) Custom lightweight binary protocol; C) ETSI messages with custom extensions |
+| **Evaluation Criteria** | Interoperability with existing/future C-V2X vehicles, message overhead, development effort |
+| **Decision and Rationale** | Fully standard ETSI ITS messages. Interoperability is non-negotiable — SafeCross must work with any C-V2X equipped vehicle regardless of manufacturer. Custom messages would require vehicle-side modifications, making real-world deployment infeasible. The VRU Awareness Message (VAM) defined in ETSI TS 103 300 was specifically designed for VRU scenarios and fits our use case. The overhead of standard messages (~50–300 bytes for CAM) is well within PC5 capacity. |
+| **AI Usage** | No AI used |
+| **Team Members** | All |
