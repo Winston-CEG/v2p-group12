@@ -70,7 +70,6 @@
 | **AI Usage** | Claude was asked about GNSS accuracy in Singapore urban areas. It correctly identified the urban canyon problem but overestimated standalone accuracy at "1–2 m." Corrected using published SLA/LTA positioning studies that show 3–5 m typical CEP in the CBD. |
 | **Team Members** | All |
 
-
 ## Entry 7 — Message Format Standard
 
 | Field | Details |
@@ -81,4 +80,16 @@
 | **Evaluation Criteria** | Interoperability with existing/future C-V2X vehicles, message overhead, development effort |
 | **Decision and Rationale** | Fully standard ETSI ITS messages. Interoperability is non-negotiable — SafeCross must work with any C-V2X equipped vehicle regardless of manufacturer. Custom messages would require vehicle-side modifications, making real-world deployment infeasible. The VRU Awareness Message (VAM) defined in ETSI TS 103 300 was specifically designed for VRU scenarios and fits our use case. The overhead of standard messages (~50–300 bytes for CAM) is well within PC5 capacity. |
 | **AI Usage** | No AI used |
+| **Team Members** | All |
+
+## Entry 8 — Threat Level Encoding for Haptic Output
+
+| Field | Details |
+|---|---|
+| **Date** | 24 Mar 2026 |
+| **Trigger / Problem** | With 8 motors decided (Entry 4) and TTC/PET as the risk metrics (Entry 5), we need to define how different threat levels map to haptic patterns the user can intuitively distinguish. |
+| **Options / Alternatives** | A) Vary vibration intensity only (low/med/high amplitude); B) Vary pulse frequency only (slow/fast pulses); C) Vary both intensity and pulse frequency together; D) Use distinct vibration waveforms per threat level |
+| **Evaluation Criteria** | User discriminability, intuitiveness (should feel "more urgent" without training), motor driver complexity, battery impact |
+| **Decision and Rationale** | Combined intensity + pulse frequency (Option C). Three threat levels defined: LOW (TTC > 5 s) = 1 Hz pulse, 30% duty cycle; MEDIUM (3–5 s) = 3 Hz pulse, 60% duty cycle; HIGH (≤ 3 s) = 5 Hz continuous burst, 100% duty cycle. This dual encoding is more perceptually robust than either dimension alone — even if the user misjudges intensity, the pulse rate difference is clearly distinguishable. Distinct waveforms (Option D) were rejected as they require more complex motor drivers and user training. |
+| **AI Usage** | AI not used |
 | **Team Members** | All |
