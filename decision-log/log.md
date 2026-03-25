@@ -93,3 +93,15 @@
 | **Decision and Rationale** | Combined intensity + pulse frequency (Option C). Three threat levels defined: LOW (TTC > 5 s) = 1 Hz pulse, 30% duty cycle; MEDIUM (3–5 s) = 3 Hz pulse, 60% duty cycle; HIGH (≤ 3 s) = 5 Hz continuous burst, 100% duty cycle. This dual encoding is more perceptually robust than either dimension alone — even if the user misjudges intensity, the pulse rate difference is clearly distinguishable. Distinct waveforms (Option D) were rejected as they require more complex motor drivers and user training. |
 | **AI Usage** | AI not used |
 | **Team Members** | All |
+
+## Entry 9 — Emergency Event Handling (DENM)
+
+| Field | Details |
+|---|---|
+| **Date** | 25 Mar 2026 |
+| **Trigger / Problem** | The threat encoding (Entry 8) handles normal approaching vehicles via CAM. But what about emergency events broadcast via DENM — e.g., a vehicle performing emergency braking or a wrong-way driver? Should these use the same directional haptic pattern? |
+| **Options / Alternatives** | A) Treat DENM events the same as high-TTC CAM alerts (directional vibration); B) DENM triggers a special all-motor burst pattern distinct from directional alerts |
+| **Evaluation Criteria** | Alert discriminability, user safety, false alarm tolerance |
+| **Decision and Rationale** | DENM emergency events trigger a distinctive 1-second all-motor simultaneous burst, clearly different from the directional single-motor patterns used for normal TTC alerts. DENM events represent qualitatively different hazards — the user needs to immediately understand "stop, danger all around" rather than "vehicle from your left." The all-motor burst is analogous to emergency vibration patterns on smartphones and requires no directional interpretation under stress. |
+| **AI Usage** | AI not used, used online resources |
+| **Team Members** | All |
