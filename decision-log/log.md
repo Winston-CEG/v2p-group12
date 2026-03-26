@@ -105,3 +105,15 @@
 | **Decision and Rationale** | DENM emergency events trigger a distinctive 1-second all-motor simultaneous burst, clearly different from the directional single-motor patterns used for normal TTC alerts. DENM events represent qualitatively different hazards — the user needs to immediately understand "stop, danger all around" rather than "vehicle from your left." The all-motor burst is analogous to emergency vibration patterns on smartphones and requires no directional interpretation under stress. |
 | **AI Usage** | AI not used, used online resources |
 | **Team Members** | All |
+
+## Entry 10 — Power Consumption and Battery Life Optimisation
+
+| Field | Details |
+|---|---|
+| **Date** | 26 Mar 2026 |
+| **Trigger / Problem** | Initial power estimates show ~4.1 hrs battery life with a 3000 mAh cell. Target is > 6 hrs for a full day of intermittent outdoor use. Need to reduce average power draw without compromising safety responsiveness. |
+| **Options / Alternatives** | A) Increase battery to 4500 mAh; B) Reduce C-V2X receiver duty cycle; C) Adaptive processing — lower GNSS and computation rates when pedestrian is stationary; D) Reduce GNSS update rate globally to 1 Hz |
+| **Evaluation Criteria** | Impact on device weight/size, latency impact during alerts, safety implications of reduced monitoring |
+| **Decision and Rationale** | Adaptive processing (Option C). When the IMU detects the pedestrian is stationary (< 0.3 m/s for > 10 s), GNSS drops to 1 Hz and the collision engine cycle extends to 500 ms. Full rates (10 Hz GNSS, 100 ms engine cycle) resume immediately when motion is detected. This reduces processor active duty to ~15% during idle periods, extending battery life to ~6.2 hrs. Larger battery (Option A) was rejected to keep total device weight under 150 g. Reducing C-V2X Rx duty cycle (Option B) was rejected — the receiver must stay on at all times to catch incoming CAMs, even when the user is standing still at a kerb. |
+| **AI Usage** | Claude helped estimate power savings from adaptive duty cycling. |
+| **Team Members** | All |
